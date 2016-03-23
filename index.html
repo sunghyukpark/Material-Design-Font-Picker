@@ -7,11 +7,15 @@
   <script src="googlefonts.js"></script>
 </head>
 <body>
-  <div ng-app="font" ng-controller="FontController as font">
-    <b>Fonts:</b>
-    <div>
-      {{font.fonts}}
+  <div ng-app="font" ng-controller="FontController as fontc">
+
+    <div id='fonts-wrapper'>
+      <b>Fonts:</b>
+      <span ng-repeat='f in fontc.fonts'>
+        {{f.family }} ||
+      </span>
     </div>
+
   </div>
 </body>
 </html>
