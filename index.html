@@ -11,20 +11,22 @@
 </head>
 
 <body>
-  <div id="font-app" ng-app="font" ng-controller="FontController">
-    <p> Click on font to select</p>
+  <div ng-app="font">
+    <div id="font-controller" ng-controller="FontController">
 
-    <input type="search" ng-model="fsearch" placeholder="Search fonts..." aria-label="filter fonts"/>
-    <div id="font-card">
-      <md-button class="md-raise" ng-repeat="font in fonts | filter:fsearch as results" style="font-family: {{font.family}}" ng-click="addToFontSelectorDialog(font)">
-        <h3 id="font-sample-text">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPp</h3>
-        <div id='font-name'>{{font.family}}</div>
-      </md-button>
-      <md-button class="md-raise" ng-if="results.length == 0">
-        <strong>No results found...</strong>
-      </md-button>
+      <p> Click on font to select</p>
+      <input type="search" ng-model="fsearch" placeholder="Search fonts..." aria-label="filter fonts"/>
+      <div id="font-card">
+        <md-button class="md-raise" ng-repeat="font in fonts | filter:fsearch as results" style="font-family: {{font.family}}" ng-click="showDialog()">
+          <h3 id="font-sample-text">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPp</h3>
+          <div id='font-name'>{{font.family}}</div>
+        </md-button>
+        <md-button class="md-raise" ng-if="results.length == 0">
+          <strong>No results found...</strong>
+        </md-button>
+      </div>
+
     </div>
-
   </div>
 
   <!-- Angular Material requires Angular.js Libraries -->
@@ -39,8 +41,15 @@
   <!-- Webfont -->
   <script src="http://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script>
-    var fonts = angular.element(document.getElementById('font-app'))
-    console.log(fonts)
+    var controllerElement = document.querySelector('#font-controller')
+    console.log(controllerElement)
+    var scope = angular.element(controllerElement)
+    console.log(scope)
+
+    var fontsFamily = scope.fontsFamily
+    console.log(fontsFamily)
+
+
     WebFont.load({
       google: {
         families: ['ABeeZee', 'Abel', 'Abril Fatface', 'Aclonica']
