@@ -1,2 +1,6 @@
 button {
-  width: 200px;}
+  width: 400px;}
+
+.selected {
+  background-color: yellow;
+}

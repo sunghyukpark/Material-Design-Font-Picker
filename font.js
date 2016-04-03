@@ -6,6 +6,22 @@ app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter'
   $scope.fonts = fontGetter.fonts;
   $scope.fontsFamily = fontGetter.fontsFamily;   // for use in WebFont Load
 
+  // Font selection
+  $scope.selectedFonts = [];
+
+  // Font status change, add to selection if not present
+  $scope.toggle = function(font){
+    var pos = $scope.selectedFonts.indexOf(font)
+    if (pos == -1){
+      $scope.selectedFonts.push(font);
+      font.selected = true;
+    } else {
+      $scope.selectedFonts.splice(pos, 1);
+      font.selected = false;
+    }
+  }
+
+
   // Dialog
   $scope.status = '';
   $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
@@ -41,8 +57,8 @@ app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter'
         '    </md-toolbar>' +
         '      <div class="md-dialog-content">' +
         '        <md-list>' +
-        '          <md-list-item ng-repeat="font in fonts">' +
-        '            <p>{{font}}</p>' +
+        '          <md-list-item ng-repeat="sel in selectedFonts">' +
+        '            <p>{{sel}}</p>' +
         '          </md-list-item>' +
         '        </md-list>' +
         '        <h3>1. Verify your fonts and settings:</h3>' +
@@ -58,7 +74,8 @@ app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter'
         '  </form>' +
         '</md-dialog>',
       locals: {
-        fonts: $scope.fonts
+        fonts: $scope.fonts,
+        selectedFonts: $scope.selectedFonts
       },
       controller: DialogController
     })
@@ -70,8 +87,9 @@ app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter'
     });
   };
 
-  function DialogController($scope, $mdDialog, fonts){
+  function DialogController($scope, $mdDialog, fonts, selectedFonts){
     $scope.fonts = fonts;
+    $scope.selectedFonts = selectedFonts;
     $scope.closeDialog = function(){
       $mdDialog.hide();
     };

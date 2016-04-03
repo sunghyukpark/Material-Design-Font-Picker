@@ -15,8 +15,6 @@ app.factory('fontGetter', ['$http', function($http){
       url: GOOGLE_FONT_URL
     }).then(function successCallback(response){
       saveFonts(response.data.items);
-      console.log(fonts)
-      console.log(fontsFamily)
       // load(fontsFamily);
     }, function errorCallback(response){
       console.log('Google Font Request Failed')

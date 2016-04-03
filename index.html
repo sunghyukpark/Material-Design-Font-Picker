@@ -13,11 +13,13 @@
 <body>
   <div ng-app="font">
     <div id="font-controller" ng-controller="FontController">
-
-      <p> Click on font to select</p>
+      <h1>Click To Select Font</h1>
       <input type="search" ng-model="fsearch" placeholder="Search fonts..." aria-label="filter fonts"/>
+      <md-button class="md-raise" ng-click="showDialog()">
+        <h2> View my Fonts</h2>
+      </md-button>
       <div id="font-card">
-        <md-button class="md-raise" ng-repeat="font in fonts | filter:fsearch as results" style="font-family: {{font.family}}" ng-click="showDialog()">
+        <md-button class="md-raise" ng-repeat="font in fonts | filter:fsearch as results" style="font-family: {{font.family}}" ng-class="{'selected':font.selected}" ng-click="toggle(font)">
           <h3 id="font-sample-text">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPp</h3>
           <div id='font-name'>{{font.family}}</div>
         </md-button>
