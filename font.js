@@ -56,14 +56,26 @@ app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter'
         '      </div>' +
         '    </md-toolbar>' +
         '      <div class="md-dialog-content">' +
-        '        <md-list>' +
-        '          <md-list-item ng-repeat="sel in selectedFonts">' +
-        '            <p>{{sel}}</p>' +
-        '          </md-list-item>' +
-        '        </md-list>' +
+        '        <md-content class="md-padding" layout="row" layout-wrap>' +
+        '          <md-card ng-repeat="font in selectedFonts" style="width: 300px;">' +
+        '            <md-card-title>' +
+        '              <md-card-title-text>' +
+        '                <span class="md-headline" style="font-family: {{font.family}}">AaBbCcDdEeFfGg</span>' +
+        '                <span class="md-subhead">{{font.family}}</span>' +
+        '                <md-button class="md-warn" href="{{font.files.regular}}">Click to Download</md-button>' +
+        '              </md-card-title-text>' +
+        '              <md-card-title-media>' +
+        '                <div class="md-media-sm card-media"></div>' +
+        '              </md-card-title-media>' +
+        '            </md-card-title>' +
+        '            <md-card-actions layout="row" layout-align="end center">' +
+        '              <md-button class>Selected</md-checkbox>' +
+        '            </md-card-actions>' +
+        '          </md-card>' +
+        '        </md-content>' +
         '        <h3>1. Verify your fonts and settings:</h3>' +
-        '        <h3>2. Add this Javascript Tag</h3>' +
-        '        <h3>3. Use these font-family declarations</h3>' +
+        '        <h3>2. Add Javascript Tag:</h3>' +
+        '        <h3>3. Use these font-family declarations:</h3>' +
         '      </div>' +
         '    </md-dialog-content>' +
         '    <md-dialog-actions layout="row">' +

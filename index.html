@@ -41,17 +41,22 @@
       </form>
 
       <!-- Font Cards -->
-      <md-content class="md-padding" layout-xs="column" layout="row">
-        <md-list>
-          <md-list-item class="md-2-line" ng-repeat="font in fonts | filter: fontC.searchText">
-            <md-checkbox ng-click="toggle(font)"></md-checkbox>
-            <div class="md-list-item-text">
-              <h3 style="font-family: {{font.family}}">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPp</h3>
-              <h3>{{font.family}}</h3>
-              <p>{{font.subsets}}</p>
-            </div>
-          </md-list-item>
-        </md-list>
+      <md-content class="md-padding" layout="row" layout-wrap>
+        <md-card ng-repeat="font in fonts |filter: fontC.searchText" style="width: 300px;">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline" style="font-family: {{font.family}}">AaBbCcDdEeFfGg</span>
+              <span class="md-subhead">{{font.family}}</span>
+              <span class="md-subhead">Subsets: {{font.subsets}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-sm card-media"></div>
+            </md-card-title-media>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-checkbox ng-click="toggle(font)">Select</md-checkbox>
+          </md-card-actions>
+        </md-card>
       </md-content>
 
     </div>
