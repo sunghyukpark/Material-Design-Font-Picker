@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Material Design Fonts Selector</title>
+  <title>Material Fonts Selector</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
@@ -16,28 +16,12 @@
       <md-button>Instructions</md-button>
     </section>
 
-    <!-- Search with Auto complete -->
-    <form ng-submit="$event.preventDefault()">
-      <md-autocomplete
-          ng-disabled="fontC.isDisabled"
-          md-no-cache="fontC.noCache"
-          md-selected-item="fontC.selectedItem"
-          md-search-text-change="fontC.searchTextChange(fontC.searchText)"
-          md-search-text="fontC.searchText"
-          md-selected-item-change="fontC.selectedItemChange(item)"
-          md-items="font in fonts | filter: fontC.searchText"
-          md-item-text="font.family"
-          md-min-length="0"
-          placeholder="Click Here to search your favorite fonts">
-        <md-item-template>
-          <span md-highlight-text="fontC.searchText" md-highlight-flags="^i">{{font.family}}</span>
-        </md-item-template>
-      </md-autocomplete>
-    </form>
+    <!-- Search BoX -->
+    <h3> Search Fonts: <input type="text" ng-model="searchBox"></h3>
 
     <!-- Font Cards -->
     <md-content class="md-padding" layout="row" layout-wrap>
-      <md-card ng-repeat="font in fonts |filter: fontC.searchText" style="width: 300px;">
+      <md-card ng-repeat="font in fonts |filter: searchBox" style="width: 300px;">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline" style="font-family: {{font.family}}">AaBbCcDdEeFfGg</span>
