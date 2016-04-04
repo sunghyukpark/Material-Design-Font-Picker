@@ -15,7 +15,7 @@ app.factory('fontGetter', ['$http', function($http){
       url: GOOGLE_FONT_URL
     }).then(function successCallback(response){
       saveFonts(response.data.items);
-      // load(fontsFamily);
+      console.log(fontsFamily)
     }, function errorCallback(response){
       console.log('Google Font Request Failed')
     });
@@ -34,14 +34,6 @@ app.factory('fontGetter', ['$http', function($http){
       fonts[i] = font; // index refers to font object
       fontsFamily[i] = font.family;
     };
-  };
-
-  var load = function(fontsFamily){
-    WebFont.load({
-      google: {
-        families: fontsFamily
-      }
-    })
   };
 
   refresh();

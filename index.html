@@ -1,65 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RelayTo Fonts Selector</title>
+  <title>Material Design Fonts Selector</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="index.css">
-
 </head>
 
-<body>
-  <div ng-app="font">
-    <div id="font-controller" ng-controller="FontController as fontC" ng-cloak>
+<body ng-app="font">
+  <div id="font-controller" ng-controller="FontController as fontC" ng-cloak>
+    <!-- Header -->
+    <h1 class="md-display-2">Material Design Font Picker</h1>
+    <section layout="row">
+      <md-button ng-click="showDialog()">My Fonts</md-button>
+      <md-button>Instructions</md-button>
+    </section>
 
-      <!-- Header -->
-      <h1 class="md-display-2">RelayTo Fonts Selector</h1>
-      <section layout="row">
-        <md-button ng-click="showDialog()">My Fonts</md-button>
-        <md-button>Instructions</md-button>
-      </section>
+    <!-- Search with Auto complete -->
+    <form ng-submit="$event.preventDefault()">
+      <md-autocomplete
+          ng-disabled="fontC.isDisabled"
+          md-no-cache="fontC.noCache"
+          md-selected-item="fontC.selectedItem"
+          md-search-text-change="fontC.searchTextChange(fontC.searchText)"
+          md-search-text="fontC.searchText"
+          md-selected-item-change="fontC.selectedItemChange(item)"
+          md-items="font in fonts | filter: fontC.searchText"
+          md-item-text="font.family"
+          md-min-length="0"
+          placeholder="Click Here to search your favorite fonts">
+        <md-item-template>
+          <span md-highlight-text="fontC.searchText" md-highlight-flags="^i">{{font.family}}</span>
+        </md-item-template>
+      </md-autocomplete>
+    </form>
 
-      <!-- Search with Auto complete -->
-      <form ng-submit="$event.preventDefault()">
-        <md-autocomplete
-            ng-disabled="fontC.isDisabled"
-            md-no-cache="fontC.noCache"
-            md-selected-item="fontC.selectedItem"
-            md-search-text-change="fontC.searchTextChange(fontC.searchText)"
-            md-search-text="fontC.searchText"
-            md-selected-item-change="fontC.selectedItemChange(item)"
-            md-items="font in fonts | filter: fontC.searchText"
-            md-item-text="font.family"
-            md-min-length="0"
-            placeholder="Click Here to search your favorite fonts">
-          <md-item-template>
-            <span md-highlight-text="fontC.searchText" md-highlight-flags="^i">{{font.family}}</span>
-          </md-item-template>
-        </md-autocomplete>
-      </form>
-
-      <!-- Font Cards -->
-      <md-content class="md-padding" layout="row" layout-wrap>
-        <md-card ng-repeat="font in fonts |filter: fontC.searchText" style="width: 300px;">
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline" style="font-family: {{font.family}}">AaBbCcDdEeFfGg</span>
-              <span class="md-subhead">{{font.family}}</span>
-              <span class="md-subhead">Subsets: {{font.subsets}}</span>
-            </md-card-title-text>
-            <md-card-title-media>
-              <div class="md-media-sm card-media"></div>
-            </md-card-title-media>
-          </md-card-title>
-          <md-card-actions layout="row" layout-align="end center">
-            <md-checkbox ng-click="toggle(font)">Select</md-checkbox>
-          </md-card-actions>
-        </md-card>
-      </md-content>
-
-    </div>
+    <!-- Font Cards -->
+    <md-content class="md-padding" layout="row" layout-wrap>
+      <md-card ng-repeat="font in fonts |filter: fontC.searchText" style="width: 300px;">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" style="font-family: {{font.family}}">AaBbCcDdEeFfGg</span>
+            <span class="md-subhead">{{font.family}}</span>
+            <span class="md-subhead">Subsets: {{font.subsets}}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-checkbox ng-click="toggle(font)">Select</md-checkbox>
+        </md-card-actions>
+      </md-card>
+    </md-content>
   </div>
 
   <!-- Angular Material requires Angular.js Libraries -->
@@ -71,27 +64,21 @@
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 
-  <!-- Webfont -->
-  <script src="http://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-  <script>
-    var controllerElement = document.querySelector('#font-controller')
-    console.log(controllerElement)
-    var scope = angular.element(controllerElement)
-    console.log(scope)
-
-    var fontsFamily = scope.fontsFamily
-    console.log(fontsFamily)
-
-
-    WebFont.load({
-      google: {
-        families: ['ABeeZee', 'Abel', 'Abril Fatface', 'Aclonica']
-      }
-    });
-  </script>
-
   <!-- JS -->
   <script src="googlefonts.js"></script>
   <script src="font.js"></script>
+
+  <!-- Webfont -->
+  <script src="http://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+
+  <!-- Webfont load for style -->
+  <script>
+    WebFont.load({
+       google: {
+         families: ["ABeeZee", "Abel", "Abril Fatface", "Aclonica", "Acme", "Actor", "Adamina", "Advent Pro", "Aguafina Script", "Akronim", "Aladin", "Aldrich", "Alef", "Alegreya", "Alegreya SC", "Alegreya Sans", "Alegreya Sans SC", "Alex Brush", "Alfa Slab One", "Alice", "Alike", "Alike Angular", "Allan", "Allerta", "Allerta Stencil"]
+       }
+    });
+  </script>
+
 </body>
 </html>

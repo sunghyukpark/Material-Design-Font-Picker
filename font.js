@@ -21,7 +21,6 @@ app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter'
     }
   }
 
-
   // Dialog
   $scope.status = '';
   $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
