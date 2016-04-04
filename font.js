@@ -1,10 +1,10 @@
-var app = angular.module('font', ['ngMaterial', 'googlefont']);
+var app = angular.module('font', ['ngMaterial','googlefont']);
 
 app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter', function($scope, $mdDialog, $mdMedia, fontGetter){
 
   // Data
   $scope.fonts = fontGetter.fonts;
-  $scope.fontsFamily = fontGetter.fontsFamily;   // for use in WebFont Load
+  $scope.fontsFamily = fontGetter.fontsFamily;   // for use in WebFont Load, currently not used
 
   // Font selection
   $scope.selectedFonts = [];
@@ -14,10 +14,8 @@ app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter'
     var pos = $scope.selectedFonts.indexOf(font)
     if (pos == -1){
       $scope.selectedFonts.push(font);
-      font.selected = true;
     } else {
       $scope.selectedFonts.splice(pos, 1);
-      font.selected = false;
     }
   }
 
@@ -36,7 +34,7 @@ app.controller('FontController', ['$scope','$mdDialog', '$mdMedia', 'fontGetter'
       clickOutsideToClose: true,
       fullscreen: useFullScreen,
 
-      // templateUrl: 'selector.tmpl.html',
+      // templateUrl: 'selector.tmpl.html', - will be used
       template:
         '<md-dialog aria-label="selector"  ng-cloak>' +
         '  <form>' +

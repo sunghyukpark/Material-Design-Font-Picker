@@ -3,8 +3,6 @@ var app = angular.module('googlefont', [])
 app.factory('fontGetter', ['$http', function($http){
   var GOOGLE_FONT_URL = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAkIL39uNV_p5fgAhpc-BUpbqL6bC0pl2E';
 
-  // fonts - save fonts as OBJECTS
-  // fontsFamily - save fonts as STRING(Font Family only)
   var fonts = [];
   var fontsFamily = [];
 
@@ -15,7 +13,6 @@ app.factory('fontGetter', ['$http', function($http){
       url: GOOGLE_FONT_URL
     }).then(function successCallback(response){
       saveFonts(response.data.items);
-      console.log(fontsFamily)
     }, function errorCallback(response){
       console.log('Google Font Request Failed')
     });
